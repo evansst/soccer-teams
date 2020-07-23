@@ -4,6 +4,8 @@ const id = params.get('id');
 const baseURL = `http://localhost:3000/teams`;
 const teamURL = `${baseURL}/${id}`;
 
+// Player List
+
 const $playerSection = document.querySelector('section');
 
 fetch (teamURL)
@@ -51,4 +53,32 @@ function createPlayerCard($playerName, $playerInfo) {
 
 function showPlayer($playerCard) {
   return $playerSection.append($playerCard);
+}
+
+//POST REQUEST: Add a player to the Team
+
+const positionOptions = ['GoalKeeper', 'Defense','Midfield', 'Forward'];
+const $positionDropDown = document.querySelector('#position-field');
+const $teamInput = document.querySelector('#team-field');
+$teamInput.value = id;
+
+
+const $positionOptions = createOptionsElements(positionOptions);
+appendOptions($positionOptions, $positionDropDown);
+
+function createOptionsElements(optionsArray) {
+  $options = optionsArray.map ( option => {
+    const $option = document.createElement('option');
+    $option.innerText = option;
+    $option.value = option;
+    return $option;
+  });
+  return $options;
+}
+
+function appendOptions($options, $dropDown) {
+  $options.forEach ( $option => {
+    $dropDown.append($option);
+  });
+  return $dropDown;
 }

@@ -11,7 +11,23 @@
   </head>
   <body>
     <h1></h1>
-    
+    <form method="POST" action="http://localhost:3000/players">
+      <label for="name-field">Player Name</label>
+      <input id="name-field" name="name" type="text" placeholder="First name only">
+
+      <label for="number-field">Number</label>
+      <input id="number-field" name="number" type="number" placeholder="between 0 and 99">
+
+      <label for="position-field">Position</label>
+      <select id="position-field" name="position">
+      </select>
+
+      <input id="team-field" name="team_id" type="hidden">
+
+
+  
+      <input type="submit" value="Add Player">
+    </form>
     <section></section>
   <script src="./team.js"></script>
 </body>

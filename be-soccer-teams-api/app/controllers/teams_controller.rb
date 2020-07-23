@@ -10,4 +10,12 @@ class TeamsController < ApplicationController
 
     render json: @team, include: [:players]
   end
+
+  def create
+    @team = Team.create(
+      name: params[:name]
+    )
+
+    render json: @team
+  end
 end

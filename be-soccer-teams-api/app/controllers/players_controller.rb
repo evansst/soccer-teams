@@ -1,6 +1,10 @@
 class PlayersController < ApplicationController
   def index
-    @players = Player.all
+    @players = if params[:name]
+                 Player.where('name LIKE ?', "%#{params['name']}%")
+               else
+                 Player.all
+               end
 
     render json: @players, include: [:team]
   end
@@ -13,10 +17,10 @@ class PlayersController < ApplicationController
 
   def create
     @player = Player.create(
-      name: params[:id],
+      name: params[:name],
       number: params[:number],
       position: params[:position],
-      team: params[:team]
+      team_id: params[:team_id]
     )
 
     render json: @player
